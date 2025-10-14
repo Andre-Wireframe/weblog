@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %} Pagina de Posts {% endblock %}
+
+{% block contenido %}
+
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 m-auto">
+                <h1 class="weblock-title">Weblog.esc</h1>
+                <h2 class="weblock-subtitle">Un lugar para hablar</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a class="redactar" href="{% url 'crear_post' %}">Redactar un post</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+{% if posts %}
+
+{% for p in posts %}
+
+<div class="container m-auto">
+    <div class="row">
+
+        {% if p.imagen %}
+
+            <img src="{{ p.imagen }}">
+
+        {% endif %}
+
+        <div class="col-12">
+            <h3 class="postTitulo">{{ p.titulo }}</h3>
+        </div>
+        <div class="col-12">
+            <small class="postFecha">Creado el <time datetime="dd/mm/aaaa">{{ p.fecha_c }}</time></small>
+        </div>
+        <div class="col-12">
+            <p class="postContenido">
+                {{ p.contenido }}
+            </p>
+        </div>
+        <div class="col-12">
+            <h4 class="postAutor">Post de: {{ p.autor }}</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            <a href="#"><img src="#" alt="Comentar"></a>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<h3 class="wblock-h3">No hay posts aqui vuelve otro dia</h3>
+
+{% endif %}
+
+{% endblock %}

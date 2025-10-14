@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Crear un post {% endblock %}
+
+{% block contenido %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 m-auto">
+            <form method="post">
+                {% csrf_token %}
+                <label for="titulo" class="label">Titulo del post</label><br>
+                <input type="text" class="form-control" name="titulo" required><br><br>
+
+                <label for="autor" class="label">Nombre del autor</label><br>
+                <input type="text" class="form-control" name="autor" required><br><br>
+
+                <label for="contenido" class="label">Contenido</label><br>
+                <textarea name="contenido" id="textarea2" class="form-control" placeholder="Redacta tu post aqui" required></textarea><br><br>
+
+                <label for="imagen" class="label">Pon tu imagen aqui</label><br>
+                <input class="postimagen" name="imagen" type="image"><br><br>
+
+                <button class="boton" type="submit" class="btn btn-secondary">Subir</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
