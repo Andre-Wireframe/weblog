@@ -10,8 +10,10 @@
     <div class="container">
         <div class="row">
             <div class="col-12 m-auto">
-                <h1 class="weblock-title">Weblog.esc</h1>
-                <h2 class="weblock-subtitle">Un lugar para hablar</h2>
+                <div class="weblog-hero">
+                    <h1 class="weblog-title">Weblog.esc</h1>
+                    <h2 class="weblog-subtitle">Un lugar para hablar</h2>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -24,41 +26,42 @@
 
 {% if posts %}
 
+<div class="posts">
+
 {% for p in posts %}
 
-<div class="container m-auto">
-    <div class="row">
+        <div class="container p-5 mb-5"  style="background-color: rgba(165, 239, 165, 0.358); border-radius: 20px;">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h3 class="postTitulo">{{ p.titulo }}</h3>
+                    <small class="postFecha">Creado el <time datetime="dd/mm/aaaa">{{ p.fecha_c }}</time></small>
 
-        {% if p.imagen %}
+                    <p class="postContenido">
+                        {{ p.contenido }}
+                    </p>
+                    <h4 class="postAutor">Post de: {{ p.autor }}</h4>
+                </div>
+                {% if p.imagen %}
+                    
+                    <div class="col-12 col-md-6"><img class="postImagen" src="{{ p.imagen }}"></div>
+                
+                {% else %}
 
-            <img src="{{ p.imagen }}">
+                    <div class="col-12 col-md-6"><img width="350px" he class="postImagen" alt="img" src="{% static 'css/img/sin_img.jpg' %}"></div>
 
-        {% endif %}
+                {% endif %}
+            </div>
 
-        <div class="col-12">
-            <h3 class="postTitulo">{{ p.titulo }}</h3>
+            <div class="col-12 md-6">
+                <a href="#" class="comentar"><img src="#">Comentar</a>
+            </div>
         </div>
-        <div class="col-12">
-            <small class="postFecha">Creado el <time datetime="dd/mm/aaaa">{{ p.fecha_c }}</time></small>
-        </div>
-        <div class="col-12">
-            <p class="postContenido">
-                {{ p.contenido }}
-            </p>
-        </div>
-        <div class="col-12">
-            <h4 class="postAutor">Post de: {{ p.autor }}</h4>
-        </div>
+
     </div>
-
-    <div class="row">
-        <div class="col-3">
-            <a href="#"><img src="#" alt="Comentar"></a>
-        </div>
-    </div>
-</div>
 
 {% endfor %}
+
+</div>
 
 {% else %}
 

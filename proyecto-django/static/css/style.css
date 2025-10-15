@@ -1,4 +1,160 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#logo {
+    border-radius: 100%;
+}
+
+.nav-item {
+    text-decoration: none;
+    margin-right: 25px;
+    color: white;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.nav-item:hover {
+    font-size: 25px;
+    text-decoration: underline;
+}
+
 header {
     text-align: center;
-    background-color: gray;
+    background-color: lightgreen;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-attachment: fixed;
+}
+
+.weblog-title {
+    font-size: 50px;
+    margin-bottom: 20px;
+    padding: 30px;
+    margin: 20px;
+}
+
+.weblog-title:hover {
+    background-color:  rgba(52, 150, 116, 0.37);
+    border-radius: 20px;
+    font-size: 70px;
+    margin: 8px;
+    background-attachment: fixed;
+    text-decoration: underline;
+}
+
+.weblog-subtitle {
+    font-size: 25px;
+    margin-bottom: 50px;
+}
+
+.weblog-subtitle:hover {
+    text-decoration: underline;
+}
+
+.redactar {
+    background-color: aquamarine;
+    text-align: left;
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    border: solid 0.5px black;
+    margin-bottom: 20px;
+}
+
+.redactar:hover {
+    background-color: rgb(111, 224, 186);
+    border: solid 2px rgb(79, 79, 79);
+    text-decoration: underline;
+}
+
+.posts {
+    margin-top: 50px;
+}
+
+.postTitulo {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.postFecha {
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.postContenido {
+    font-size: 17px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    max-width: 450px;
+}
+
+.postAutor {
+    font-size: 20px;
+    font-style: normal;
+    margin-bottom: 30px;
+}
+
+.comentar {
+    background-color: aquamarine;
+    text-align: left;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    border: solid 0.5px black;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.comentar:hover {
+    background-color: rgb(111, 224, 186);
+    border: solid 2px rgb(79, 79, 79);
+    text-decoration: underline;
+}
+
+.postImagen {
+    margin-bottom: 30px;
+    max-width: 400px;
+}
+
+footer {
+    background-color: lightgreen;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.crear_post {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.boton {
+    background-color: aquamarine;
+    text-align: left;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    border: solid 2px black;
+    margin-bottom: 20px;
+}
+
+.boton:hover {
+    background-color: rgb(111, 224, 186);
+    text-decoration: underline;
+}
+
+.logimg {
+    border: solid 5px green;
+    border-radius: 20px;
 }

@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 m-auto">
-            <form method="post">
+            <form class="crear_post" method="post">
                 {% csrf_token %}
                 <label for="titulo" class="label">Titulo del post</label><br>
                 <input type="text" class="form-control" name="titulo" required><br><br>
@@ -18,8 +18,8 @@
                 <label for="contenido" class="label">Contenido</label><br>
                 <textarea name="contenido" id="textarea2" class="form-control" placeholder="Redacta tu post aqui" required></textarea><br><br>
 
-                <label for="imagen" class="label">Pon tu imagen aqui</label><br>
-                <input class="postimagen" name="imagen" type="image"><br><br>
+                <label for="imagen" class="label">Pon tu imagen aqui (opcional)</label><br>
+                <input class="form-control" id="inputGroupFile02" name="imagen" type="file"><br><br>
 
                 <button class="boton" type="submit" class="btn btn-secondary">Subir</button>
             </form>

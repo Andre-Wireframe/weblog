@@ -1,7 +1,11 @@
-from django.forms import ModelForm, Form
+from django import forms
 from .models import Post
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-class PostForm(ModelForm):
+class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['titulo', 'autor', 'contenido', 'imagen']
+
+class Registro(UserCreationForm):
+    pass

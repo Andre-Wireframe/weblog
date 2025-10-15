@@ -135,3 +135,9 @@ STATICFILES_DIRS = [
 #Mensajes
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+
+#Login y registro
+
+LOGIN_URL = 'login/'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'

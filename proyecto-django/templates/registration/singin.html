@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %} Registo {% endblock %}
+
+{% block contenido %}
+
+    <div class="conteiner">
+        <div class="row">
+            <div class="col-12 col-md-6 m-auto" style="text-align: center;">
+                <img class="logimg" src="{% static 'css/img/logo1.jpg' %}" width="420px">
+            </div>
+            <div class="col-12 col-md-6 ms-auto mt-5 mb-5">
+                <form method="post" class="crear_post">
+                    {% csrf_token %}
+                    <label for="username">Nombre de usuario</label><br>
+                    <input name="username" type="text" class="form-control" required><br><br>
+
+                    <label for="password1">Contraseña</label><br>
+                    <input name="password1" type="password" class="form-control" required><br><br>
+
+                    <label for="password2">Confirmar contraseña</label><br>
+                    <input name="password2" type="password" class="form-control" required><br><br>
+
+                    <div class="container">
+                        <div class="row" style="text-align: center;">
+                            <div class="col-6"><button type="submit" class="boton">Enviar</button></div>
+                            <div class="col-6"><button class="boton"><a href="{% url 'home' %}" style="text-decoration: none; color: rgb(0, 0, 0);">Cancelar</a></button></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 m-auto" style="text-align: center;">
+                                <small>----  o  ----</small><br>
+                                <a href="{% url 'login' %}">Si ya tienes cuenta inicia sesion aqui</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
