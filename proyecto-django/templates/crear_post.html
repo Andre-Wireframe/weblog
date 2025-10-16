@@ -8,12 +8,19 @@
     <div class="row">
         <div class="col-12 m-auto">
             <form class="crear_post" method="post">
+
                 {% csrf_token %}
+
                 <label for="titulo" class="label">Titulo del post</label><br>
                 <input type="text" class="form-control" name="titulo" required><br><br>
 
                 <label for="autor" class="label">Nombre del autor</label><br>
-                <input type="text" class="form-control" name="autor" required><br><br>
+
+                {% if user.is_authenticated %}
+                    <input type="text" value="{{ user.username }}" class="form-control" disabled><input type="text" name="autor" value="{{ user.username }}" hidden><br><br>
+                {% else %}
+                    <input type="text" class="form-control" name="autor" required><br><br>
+                {% endif %}
 
                 <label for="contenido" class="label">Contenido</label><br>
                 <textarea name="contenido" id="textarea2" class="form-control" placeholder="Redacta tu post aqui" required></textarea><br><br>

@@ -1,10 +1,18 @@
-from django.shortcuts import render, redirect
+#De vistas
+from django.shortcuts import render, redirect, get_list_or_404
+
+#Vistas y decoraciones
 from django.contrib import messages
+
+#Login y singin
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+
+#Parte del proyecto
 from . models import Post
 from . forms import PostForm, Registro
-from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -71,6 +79,7 @@ def crear_post(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Post creado con exito')
+            return redirect('home')
         
         messages.error(request, '!El formulario no es valido reintente por favor')
         form = PostForm()
@@ -78,3 +87,14 @@ def crear_post(request):
         'form':form,
     }
     return render(request, 'crear_post.html', context)
+
+@login_required
+def MisPosts(request, user):
+
+    posts = get_list_or_404(Post, autor = user)
+
+    context = {
+        'posts':posts,
+    }
+
+    return render(request, 'mis_posts.html', context)

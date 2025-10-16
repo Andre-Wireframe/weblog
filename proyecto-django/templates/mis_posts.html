@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %} Mis posts {% endblock %}
+
+{% block contenido %}
+
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 m-auto">
+                <div class="weblog-hero">
+                    <h1 class="weblog-title">Weblog.esc</h1>
+                    <h2 class="weblog-subtitle">Un lugar para hablar</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a class="redactar" href="{% url 'crear_post' %}">Redactar un post</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+{% if posts %}
+
+<div class="posts">
+
+{% for p in posts %}
+
+        <div class="container p-5 mb-5"  style="background-color: rgba(165, 239, 165, 0.358); border-radius: 20px;">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h3 class="postTitulo">{{ p.titulo }}</h3>
+                    <small class="postFecha">Creado el <time datetime="dd/mm/aaaa">{{ p.fecha_c }}</time></small>
+
+                    <p class="postContenido">
+                        {{ p.contenido }}
+                    </p>
+                    <h4 class="postAutor">Post de: {{ p.autor }}</h4>
+                </div>
+                {% if p.imagen %}
+                    
+                    <div class="col-12 col-md-6"><img class="postImagen" src="{{ p.imagen }}"></div>
+                
+                {% else %}
+
+                    <div class="col-12 col-md-6"><img width="350px" he class="postImagen" alt="img" src="{% static 'css/img/sin_img.jpg' %}"></div>
+
+                {% endif %}
+            </div>
+
+            <div class="col-12 md-6">
+                <a href="#" class="comentar"><img src="#">Comentar</a>
+            </div>
+        </div>
+
+    </div>
+
+{% endfor %}
+
+</div>
+
+{% else %}
+
+<h3 class="wblock-h3">Aun no tienes ningun post ¡Redacta uno!</h3>
+
+{% endif %}
+
+{% endblock %}
