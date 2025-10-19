@@ -25,7 +25,7 @@
 
                 <ul class="nav navbar ms-auto" id="minav">
                     <li class="nav-item"><a href="{% url 'home' %}">Blog</a></li>
-                    <li class="nav-item"><a href="#">Acerca de</a></li>
+                    <li class="nav-item"><a href="{% url 'about' %}">Acerca de</a></li>
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a href="{% url 'mis_posts' user.username %}">Mis Posts</a></li>
                         <li class="nav-item"><a href="{% url 'exit' %}">Cerrar Sesion</a></li>
