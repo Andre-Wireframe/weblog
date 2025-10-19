@@ -1,6 +1,12 @@
 #De vistas
 from django.shortcuts import render, redirect, get_list_or_404
 
+#Settings
+from django.conf import settings
+
+#Email
+from django.core.mail import send_mail
+
 #Vistas y decoraciones
 from django.contrib import messages
 
@@ -27,21 +33,36 @@ def singin(request):
     if request.method == 'POST':
         form = Registro(data = request.POST)
         if form.is_valid():
-            form.save()
-            usuario = form.cleaned_data['username']
-            contraseña = form.cleaned_data['password1']
-            user = authenticate(username = usuario, password = contraseña)
-            login(request, user)
-            messages.success(request, 'Usuario creado exitosamente')
-            return redirect('home')
-        
+            subject = 'Email de comprovacion'
+            message = 'Gracias por entrar a weblog.esc no te arrepentiras, Disfruta del servicio'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [form.cleaned_data['email']]
+
+            try:
+                send_mail(subject, message, email_from, recipient_list, fail_silently=False)
+                mail = 1
+            except:
+                mail = 0
+            
+            if mail == 1:
+                form.save()
+                usuario = form.cleaned_data['username']
+                contraseña = form.cleaned_data['password1']
+                user = authenticate(username = usuario, password = contraseña)
+                login(request, user)
+                messages.success(request, 'Usuario creado exitosamente')
+                return redirect('home')
+            else:
+                messages.error(request, '!El correo electronico no es valido')
+
         else:
             try:
                 comp = form.data['username']
                 uses = User.objects.get(username = comp)
                 messages.error(request, '!El usuario ya existe pruebe con otro')
             except:
-                messages.error(request, '!El formulario no es valido, pruebe usar una contraseña mas compleja y verifique que las contraseñas coincidan')
+                messages.error(request, '!El formulario no es valido, pruebe usar una contraseña mas compleja y verifique que las contraseñas coincidan, o puede que el correo no sea valido')
+
         form = Registro()
     return render(request, 'registration/singin.html', {'form':form})
 
