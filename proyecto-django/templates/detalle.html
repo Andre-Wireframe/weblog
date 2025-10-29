@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %} Detalle de {{ post.titulo }} {% endblock %}
+
+{% block contenido %}
+
+<header>
+    <h1 class="weblog-title">Detalle del post: {{ post.titulo }}</h1>
+</header>
+
+<div class="container p-5 mb-5 mt-5"  style="background-color: rgba(165, 239, 165, 0.358); border-radius: 20px;">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <h3 class="postTitulo">{{ post.titulo }}</h3>
+            <small class="postFecha">Creado el <time datetime="dd/mm/aaaa">{{ post.fecha_c }}</time></small>
+
+            <p class="postContenido">
+                {{ post.contenido }}
+            </p>
+            <h4 class="postAutor">Post de: {{ post.autor }}</h4>
+        </div>
+        {% if post.imagen %}
+            
+            <div class="col-12 col-md-6"><img class="postImagen" src="{{ p.imagen.url }}"></div>
+        
+        {% else %}
+
+            <div class="col-12 col-md-6"><img width="350px" he class="postImagen" alt="img" src="{% static 'css/img/sin_img.jpg' %}"></div>
+
+        {% endif %}
+    </div>
+
+    <div class="row">
+        <div class="col-6 md-3">
+            <a href="{% url 'eliminar' post.id %}" class="comentar">Eliminar Post</a>
+        </div>
+        <div class="col-6 md-3">
+            <a href="{% url 'modificar' post.id %}" class="comentar">Editar Post</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

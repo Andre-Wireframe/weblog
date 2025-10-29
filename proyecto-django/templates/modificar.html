@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Modificar un Post {% endblock %}
+
+{% block contenido %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 m-auto">
+            <form class="crear_post" method="post">
+
+                <h2 class="weblog-subtitle">Modificar: {{ post.titulo }}</h2>
+
+                {% csrf_token %}
+
+                <label for="titulo" class="label">Titulo del post</label><br>
+                <input value="{{ post.titulo }}" type="text" class="form-control" name="titulo" required><br><br>
+
+                <label for="autor" class="label">Nombre del autor</label><br>
+
+                {% if user.is_authenticated %}
+                    <input type="text" value="{{ user.username }}" class="form-control" disabled><input type="text" name="autor" value="{{ user.username }}" hidden><br><br>
+                {% else %}
+                    <input type="text" class="form-control" name="autor" required><br><br>
+                {% endif %}
+
+                <label for="contenido" class="label">Contenido</label><br>
+                <textarea name="contenido" id="textarea2" class="form-control" placeholder="Redacta tu post aqui" required>{{ post.contenido }}</textarea><br><br>
+
+                <label for="imagen" class="label">Pon tu imagen aqui (opcional)</label><br>
+                <input class="form-control" id="inputGroupFile02" name="imagen" type="file"><br><br>
+
+                <button class="boton" type="submit" class="btn btn-secondary">Modificar</button><br><br>
+                <a class="boton" href="{% url 'detalle' post.id %}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

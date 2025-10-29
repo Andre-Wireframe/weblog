@@ -1,5 +1,5 @@
 #De vistas
-from django.shortcuts import render, redirect, get_list_or_404
+from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 
 #Settings
 from django.conf import settings
@@ -112,6 +112,8 @@ def crear_post(request):
     }
     return render(request, 'crear_post.html', context)
 
+#Vistas protegidas
+
 @login_required
 def MisPosts(request, user):
 
@@ -122,3 +124,44 @@ def MisPosts(request, user):
     }
 
     return render(request, 'mis_posts.html', context)
+
+def post_detail(request, id):
+    post = get_object_or_404(Post, id = id)
+
+    context = {
+        'post' : post,
+    }
+    return render(request, 'detalle.html', context)
+
+def post_delete(request, id):
+    post = get_object_or_404(Post, id = id)
+
+    if request.method == 'POST':
+        post.delete()
+        messages.success(request, 'Post eliminado con exito')
+        return redirect('home')
+
+    context = {
+        'post' : post,
+    }
+    return render(request, 'eliminar.html', context)
+
+def post_edit(request, id):
+    post = get_object_or_404(Post, id = id)
+    form = PostForm()
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance = post)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Post modificado exitosamente')
+            return redirect('home')
+        
+        else:
+            messages.error(request, '!El formulario no es valido por favor reintente')
+
+    context = {
+        'post' : post,
+        'form' : form,
+    }
+    return render(request, 'modificar.html', context)

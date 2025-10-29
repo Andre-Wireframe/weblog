@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Eliminar {{ post.titulo }} {% endblock %}
+
+{% block contenido %}
+
+<form style="text-align: center;" class="crear_post" method="post">
+    <br><br><h1>Desea eliminar a {{ post.titulo }}</h1><br><br>
+    {% csrf_token %}
+
+    <button type="submit" class="boton">Si, Eliminar</button><br><br>
+
+    <a class="boton" href="{% url 'detalle' post.id %}">Cancelar</a><br><br>
+
+</form>
+
+{% endblock %}
